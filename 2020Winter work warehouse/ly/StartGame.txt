@@ -1,0 +1,239 @@
+package Snake;
+
+import javax.swing.*;
+import java.awt.*;
+import java.net.URL;
+
+//游戏得主启动类
+public class StartGame  {
+
+    public static void main(String[] args) {
+
+        JFrame frame = new JFrame();
+        frame.setBounds(5,5,500,520);
+        frame.setResizable(false);
+        Image im;//设置改变一个窗口得图标
+        URL url = StartGame.class.getResource("图标.jpg");
+        ImageIcon ig = new ImageIcon(url);//这里放上要设置图标图片
+        im = ig.getImage();
+        frame.setIconImage(im);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        //正常的游戏界面在面板上
+
+        frame.add(new GamePanel());
+
+        frame.setVisible(true);
+        }
+        }
+package Snake;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.net.URL;
+import java.util.Random;
+
+public class GamePanel extends JPanel implements KeyListener, ActionListener {
+
+
+    //定义蛇得数据结构
+    int length;//蛇的长度
+    int[] snakeX=new int[400];
+    int[] snakeY=new int[300];
+    String fx;//初始方向
+    //食物得坐标
+    int foodx;
+    int foody;
+    Random random=new Random();
+
+    //游戏积分
+    int score;
+
+
+    //游戏当前的状态：开始，停止
+    boolean isStart=false;//默认不开始
+    boolean isFail=false;//游戏失败
+
+
+
+//定时器 一毫秒为单位
+    Timer timer=new Timer(100,this);//100毫秒执行一次
+
+//构造器
+    public GamePanel() {
+
+        init();
+        //获得焦点和键盘事件
+        this.setFocusable(true);
+        this.addKeyListener(this);//获得键盘监听事件
+        timer.start();//游戏一开始定时器就启动
+    }
+
+    //初始化方法
+public void init(){
+
+    length=3;
+    snakeX[0]= 100;snakeY[0]=100;
+    snakeX[1]= 75;snakeY[1]=100;
+    snakeX[2]= 50;snakeY[2]=100;
+    fx="R";//初始向右
+    //把食物随机放在界面上
+    foodx=25+25*random.nextInt(15);
+    foody=75+25*random.nextInt(10);
+    score=0;
+}
+
+
+
+    //游戏中的所有，都是用这个画笔来画
+
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);//清屏
+        //设置背景，加入图片
+        URL url = StartGame.class.getResource("樱花.jpeg");
+        ImageIcon ig = new ImageIcon(url);//这里放上要设置图标图片
+        ImageIcon icon = new ImageIcon(url);
+        g.drawImage(icon.getImage(), 0, 0, null);
+        //绘制静态的面板
+        Data.header.paintIcon(this,g,15,11);//头部广告画上去
+        g.fillRect(15,75,800,700);//默认的游戏界面
+        //画积分
+        g.setColor(Color.green);
+        g.setFont(new Font("微软雅黑",Font.BOLD,15));
+        g.drawString("长度"+length,30,35);
+        g.drawString("分数"+score,30,55);
+        //画食物
+        Data.food.paintIcon(this,g,foodx,foody);
+        //把小蛇放上去
+        if(fx.equals("R")) {
+            Data.right.paintIcon(this, g, snakeX[0], snakeY[0]);//蛇头初始化向右，通过方向来判断
+        }
+        else  if (fx.equals("L")){
+            Data.left.paintIcon(this, g, snakeX[0], snakeY[0]);
+        } else  if (fx.equals("U")){
+            Data.up.paintIcon(this, g, snakeX[0], snakeY[0]);
+        } else  if (fx.equals("D")){
+            Data.down.paintIcon(this, g, snakeX[0], snakeY[0]);
+        }
+        //控制蛇身
+        for(int i=1;i<length;i++)
+        {
+            Data.body.paintIcon(this,g,snakeX[i],snakeY[i]);
+        }
+
+        //游戏状态
+        if(isStart==false){
+            g.setColor(Color.blue);
+            g.setFont(new Font("微软雅黑",Font.BOLD,25));
+            g.drawString("按下空格开始游戏",200,200);
+        }
+        if(isFail){
+            g.setColor(Color.red);
+            g.setFont(new Font("微软雅黑",Font.BOLD,18));
+            g.drawString("游戏失败，按下空格重新开始",200,200);
+        }
+
+    }
+//键盘监听事件
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        int keyCode=e.getKeyCode();//获得键盘按键
+        if(keyCode==KeyEvent.VK_SPACE){
+            if(isFail){
+                //游戏重新开始
+                isFail=false;
+                init();
+
+            }else {
+                isStart = !isStart;//取反
+            }
+            repaint();
+        }
+        //小蛇移动
+        if(keyCode==KeyEvent.VK_UP){
+            fx="U";
+        }else if(keyCode==KeyEvent.VK_DOWN){
+            fx="D";
+        } else if(keyCode==KeyEvent.VK_RIGHT){
+            fx="R";
+        }else if(keyCode==KeyEvent.VK_LEFT){
+            fx="L";
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }   @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+//事件监听---需要通过固定得实际按来刷新，1s=10次
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        //如果开始小蛇才动
+
+        if(isStart&&isFail==false){
+
+            //吃食物
+            if(snakeX[0]==foodx&&snakeY[0]==foody){
+                length++;
+                //分数加10
+                score=score+10;
+                //再次随机生成食物
+                foodx=25+25*random.nextInt(15);
+                foody=75+25*random.nextInt(10);
+            }
+            //right
+            for(int i=length-1;i>0;i--)//后一节移动到前一节得位置{
+            {
+                snakeX[i]=snakeX[i-1];//向前移动一节
+                snakeY[i]=snakeY[i-1];
+            }
+            //走向
+            //边界判断
+            if(fx.equals("R")) {
+                snakeX[0] = snakeX[0] + 25;
+                if (snakeX[0] > 600) {
+                    snakeX[0] = 25;
+                }
+            }
+                else if(fx.equals("L")){
+                    snakeX[0]=snakeX[0]-25;
+                    if(snakeX[0]<25){
+                        snakeX[0]=600;
+                    }
+                }
+                else if(fx.equals("U")){
+                    snakeY[0]=snakeY[0]-25;
+                    if(snakeY[0]<75){
+                        snakeY[0]=400;
+                    }
+                }
+                else if(fx.equals("D")){
+                    snakeY[0]=snakeY[0]+25;
+                    if(snakeY[0]>400){
+                        snakeY[0]=75;
+                    }
+                }
+
+        //失败判定，撞到自己
+            for(int i=1;i<length;i++){
+                if(snakeX[0]==snakeX[i]&&snakeY[0]==snakeY[i]){
+                    isFail=true;
+                }
+            }
+          repaint();//重画页面
+            }
+        timer.start();//定时器开始
+
+        }
+
+    }
+
+
+
