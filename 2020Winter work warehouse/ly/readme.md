@@ -16,7 +16,5 @@
 
 ### 1.进行的GUI的学习，帮助学习了Java，复习巩固了知识
 
-### 3.![image-20200401205117479](C:\Users\94776\AppData\Roaming\Typora\typora-user-images\image-20200401205117479.png)
-
-### 了解做一个界面的结构思想，对Java中的Swing，AWT有了解。
+### 2.了解做一个界面的结构思想，对Java中的Swing，AWT有了解。
 
