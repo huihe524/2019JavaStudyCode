@@ -28,11 +28,11 @@
 
 ### 4.游戏图片
 
-![image-20200401183447827](C:\Users\张梓毅\AppData\Roaming\Typora\typora-user-images\image-20200401183447827.png)
+![Image text](http://tiebapic.baidu.com/forum/w%3D580/sign=97d10da5e036afc30e0c3f6d8318eb85/6dd979df8db1cb13ddca7c76ca54564e93584ba1.jpg)
 
-![image-20200401183523313](C:\Users\张梓毅\AppData\Roaming\Typora\typora-user-images\image-20200401183523313.png)
+![Image text](http://tiebapic.baidu.com/forum/w%3D580/sign=a771854a2d292df597c3ac1d8c305ce2/1f522ef790529822419179a6c0ca7bcb0b46d4a2.jpg)
 
-![image-20200401183619948](C:\Users\张梓毅\AppData\Roaming\Typora\typora-user-images\image-20200401183619948.png)
+![Image text](http://tiebapic.baidu.com/forum/w%3D580/sign=5d8c06a595025aafd3327ec3cbecab8d/cd9fd71f3a292df56c61ec70ab315c6035a873a2.jpg)
 
 ## 三.作业收获
 
