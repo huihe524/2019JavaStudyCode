@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>图书管理系统-修改图书</title>
+</head>
+<script src="../js/jquery-1.8.3.min.js"></script>
+<body>
+<div style="width:500px; margin: 150px auto 0">
+    <div>修改图书</div>
+    <form action="/book/manager?method=update" method="post">
+        <input type="hidden" name="bid" value="">
+        名称：<input type="text" name="bname" value=""><br>
+        作者：<input type="text" name="author" value=""><br>
+        分类：<input type="text" name="category" value=""><br>
+        描述：<input type="text" name="desc" value=""><br>
+        <input type="submit" value="提交">
+    </form>
+</div>
+</body>
+<script>
+    //获取url中的参数
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg); //匹配目标参数
+        if (r != null) return unescape(r[2]); return null; //返回参数值
+    }
+    $(window).load(()=>{
+        $.ajax({
+            url: "/book/manager?method=getById&bid="+getUrlParam("bid"),
+            type: "get",
+            success: function(data) {
+                console.log(data);
+                let book = JSON.parse(data);
+                let inputs = document.getElementsByTagName("input");
+                inputs[0].value = book.bid;
+                inputs[1].value = book.bname;
+                inputs[2].value = book.author;
+                inputs[3].value = book.category;
+                inputs[4].value = book.description;
+            }
+        });
+    })
+</script>
+</html>
