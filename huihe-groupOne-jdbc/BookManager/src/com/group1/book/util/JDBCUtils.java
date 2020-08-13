@@ -80,41 +80,34 @@ public class JDBCUtils {
 
     /**
      * 更新操作 增、删、改
-     * @param connection
      * @param pstm
-     * @param sql
      * @param params
      * @return
      * @throws Exception
      */
-    public static int executeUpdate(Connection connection,PreparedStatement pstm,
-                              String sql,Object[] params) throws Exception{
+    public static int executeUpdate(PreparedStatement pstm, Object[] params) throws Exception{
         int updateRows = 0;
-        pstm = connection.prepareStatement(sql);
-        for(int i = 0; i < params.length; i++){
-            pstm.setObject(i+1, params[i]);
-        }
+        if(params != null)
+            for(int i = 0; i < params.length; i++){
+                pstm.setObject(i+1, params[i]);
+            }
         updateRows = pstm.executeUpdate();
         return updateRows;
     }
 
     /**
      * 查询操作 查
-     * @param connection
      * @param pstm
-     * @param sql
      * @param params
      * @return 结果集
      */
-    public static ResultSet executeQuery(Connection connection,PreparedStatement pstm,
-                                    String sql,Object[] params) throws Exception{
-        pstm = connection.prepareStatement(sql);
-        if(params != null){
+    public static ResultSet executeQuery(PreparedStatement pstm, Object[] params) throws Exception{
+        if (params != null){
             for(int i = 0; i < params.length; i++){
                 pstm.setObject(i+1, params[i]);
             }
         }
-        ResultSet rs = pstm.executeQuery();
-        return rs;
+        return pstm.executeQuery();
     }
+
 }
