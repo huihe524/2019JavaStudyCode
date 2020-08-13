@@ -312,7 +312,7 @@ public static void main(String[] args) throws Exception{
 在src目录下新建jdbc.properties配置文件,我这里的内容如下，这里的url省略了ip/域名哪里，就是连接本地的时候127.0.0.1/localhost可以省略
 
 ```properties
-url=jdbc:mysql:///test?serverTimezone=Asia/Shanghai
+url=jdbc:mysql:///test?serverTimezone=Asia/Shanghai&characterEncoding=UTF-8
 user=root
 password=123456
 driver=com.mysql.jdbc.Driver
@@ -448,7 +448,7 @@ import java.sql.ResultSet;
 
 public class Test {
     public static void main(String[] args) throws Exception{
-       Connection conn = JDBCUtils.getConnection();
+       	Connection conn = JDBCUtils.getConnection();
         PreparedStatement psmt = null;
 
         //增

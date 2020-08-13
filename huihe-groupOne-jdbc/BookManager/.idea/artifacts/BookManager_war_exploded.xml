@@ -11,6 +11,7 @@
         </element>
       </element>
       <element id="javaee-facet-resources" facet="BookManager/web/Web" />
+      <element id="javaee-facet-resources" facet="BookManager/web/Web2" />
     </root>
   </artifact>
 </component>

@@ -19,7 +19,8 @@ public class BookDaoImpl implements BookDao {
         String sql = "select * from book";
         try {
             conn = JDBCUtils.getConnection();
-            rs = JDBCUtils.executeQuery(conn, pstm, sql, null);
+            pstm = conn.prepareStatement(sql);
+            rs = JDBCUtils.executeQuery(pstm, null);
             while(rs.next()){
                 Book book = new Book(rs.getInt(1),rs.getString(2),rs.getString(3)
                 ,rs.getString(4),rs.getString(5));//构建对象
@@ -40,7 +41,8 @@ public class BookDaoImpl implements BookDao {
         Object[] objects = new Object[]{id};
         try {
             conn = JDBCUtils.getConnection();
-            rs = JDBCUtils.executeQuery(conn, pstm, sql, objects);
+            pstm = conn.prepareStatement(sql);
+            rs = JDBCUtils.executeQuery(pstm, objects);
             while(rs.next()){
                 book = new Book(rs.getInt(1),rs.getString(2),rs.getString(3)
                         ,rs.getString(4),rs.getString(5));//构建对象
@@ -61,7 +63,8 @@ public class BookDaoImpl implements BookDao {
         Object[] objects = new Object[]{id};
         try {
             conn = JDBCUtils.getConnection();
-            count = JDBCUtils.executeUpdate(conn, pstm, sql, objects);
+            pstm = conn.prepareStatement(sql);
+            count = JDBCUtils.executeUpdate(pstm, objects);
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
@@ -77,7 +80,8 @@ public class BookDaoImpl implements BookDao {
         Object[] objects = new Object[]{book.getBname(), book.getAuthor(), book.getCategory(), book.getDescription()};
         try {
             conn = JDBCUtils.getConnection();
-            count = JDBCUtils.executeUpdate(conn, pstm, sql, objects);
+            pstm = conn.prepareStatement(sql);
+            count = JDBCUtils.executeUpdate(pstm, objects);
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
@@ -93,7 +97,8 @@ public class BookDaoImpl implements BookDao {
         Object[] objects = new Object[]{book.getBname(), book.getAuthor(), book.getCategory(), book.getDescription(), book.getBid()};
         try {
             conn = JDBCUtils.getConnection();
-            count = JDBCUtils.executeUpdate(conn, pstm, sql, objects);
+            pstm = conn.prepareStatement(sql);
+            count = JDBCUtils.executeUpdate(pstm, objects);
         } catch (Exception e) {
             e.printStackTrace();
         }finally {

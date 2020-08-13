@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 
 public class Test {
     public static void main(String[] args) throws Exception{
-        Connection conn = JDBCUtils.getConnection();
+        	Connection conn = JDBCUtils.getConnection();
         PreparedStatement psmt = null;
 
         //增

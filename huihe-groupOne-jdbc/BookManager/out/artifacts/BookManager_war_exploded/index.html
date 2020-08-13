@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>图书管理系统</title>
+    <style>
+        table {
+            border-collapse: separate;
+            border-spacing: 5px;
+            table-layout: fixed;
+        }
+
+        table td {
+            width: 150px;
+            height: 50px;
+            text-align: center;
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body style="text-align: center">
+<div style="width: 50%; margin: 100px auto 0">
+    <div>
+        <table cellpadding="1" cellspacing="1">
+            <caption align="top">图书管理系统<a href="/book/page/addBook.html">添加图书</a></caption>
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>名称</th>
+                    <th>作者</th>
+                    <th>分类</th>
+                    <th>描述</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="mainContent">
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script>
+    $(window).load(()=>{
+        $.ajax({
+            url: "/book/manager",
+            type: "get",
+            success: function(data) {
+                console.log(data);
+                let books = JSON.parse(data);
+                let html = '';
+                for (let i = 0; i < books.length; i++){
+                    html+="<tr><td>"+books[i].bid+"</td><td>"+books[i].bname+"</td><td>"+books[i].author+"</td>\n" +
+                        "<td>"+books[i].category+"</td>\n" +
+                        "<td>"+books[i].description+"</td><td><a href=\"/book/page/editBook.html?bid="+books[i].bid+"\">修改</a>|<a href=\"/book/manager?method=delete&bid="+books[i].bid+"\">删除</a></td></tr>"
+                }
+                $('#mainContent').html(html);
+            }
+        });
+    })
+</script>
+</html>

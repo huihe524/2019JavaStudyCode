@@ -77,11 +77,18 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/web/index.html" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.26551723" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RebelAgentSelection">
@@ -94,32 +101,13 @@
     </treeState>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
-      <module name="BookManager" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <go_parameters value="-i" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/" />
-      <directory value="$PROJECT_DIR$/" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
-      <module name="BookManager" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <go_parameters value="-i" />
-      <framework value="gotest" />
-      <kind value="DIRECTORY" />
-      <directory value="$PROJECT_DIR$/" />
-      <filePath value="$PROJECT_DIR$/" />
-      <method v="2" />
-    </configuration>
     <configuration name="Tomcat 9.0.8" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.8" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/book/" />
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/book" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="BookManager:war exploded">
           <settings>
-            <option name="CONTEXT_PATH" value="/BookManager_war_exploded" />
+            <option name="CONTEXT_PATH" value="/book" />
           </settings>
         </artifact>
       </deployment>
@@ -371,6 +359,20 @@
       <workItem from="1595533411270" duration="352000" />
       <workItem from="1595533771011" duration="643000" />
       <workItem from="1595534497827" duration="29000" />
+      <workItem from="1595534561948" duration="226000" />
+      <workItem from="1595534818798" duration="717000" />
+      <workItem from="1595535551952" duration="244000" />
+      <workItem from="1595569350433" duration="176000" />
+      <workItem from="1595737433723" duration="785000" />
+      <workItem from="1595740834910" duration="2390000" />
+      <workItem from="1596812235506" duration="2611000" />
+      <workItem from="1597313799074" duration="3202000" />
+      <workItem from="1597317464716" duration="4166000" />
+      <workItem from="1597333256583" duration="2449000" />
+      <workItem from="1597335937216" duration="340000" />
+      <workItem from="1597339306232" duration="763000" />
+      <workItem from="1597346194236" duration="3110000" />
+      <workItem from="1597349843540" duration="117000" />
     </task>
     <servers />
   </component>
@@ -399,14 +401,34 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="121" y="0" key="#Project_Structure" timestamp="1595534397599">
+    <state x="495" y="170" key="#BuildArtifactsBeforeRunChooser" timestamp="1595535096003">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="121" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1595534397599" />
-    <state x="219" y="58" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595534403706">
+    <state x="495" y="170" key="#BuildArtifactsBeforeRunChooser/0.0.1536.824@0.0.1536.824" timestamp="1595535096003" />
+    <state x="121" y="0" key="#Project_Structure" timestamp="1595535160873">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="219" y="58" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1595534403706" />
+    <state x="121" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1595535160873" />
+    <state x="536" y="287" key="#Tomcat_Server" timestamp="1597335223784">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="536" y="287" key="#Tomcat_Server/0.0.1536.824@0.0.1536.824" timestamp="1597335223784" />
+    <state x="219" y="58" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597347020999">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="219" y="58" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1597347020999" />
+    <state x="527" y="50" key="#com.intellij.ide.util.MemberChooser" timestamp="1597348804950">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="527" y="50" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1597348804950" />
+    <state x="317" y="27" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1597315643016">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="317" y="27" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1536.824@0.0.1536.824" timestamp="1597315643016" />
+    <state x="476" y="0" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable" timestamp="1597335224897">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="476" y="0" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable/0.0.1536.824@0.0.1536.824" timestamp="1597335224897" />
     <state x="346" y="321" key="#com.intellij.javaee.module.view.common.J2EE.J2EEDeploymentDescriptorLocationPanel.changeDDPath" timestamp="1595533963167">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -415,66 +437,66 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="550" y="300" key="#com.intellij.javaee.module.view.web.EditWebRootDialog/0.0.1536.824@0.0.1536.824" timestamp="1595533975030" />
-    <state x="495" y="107" key="FileChooserDialogImpl" timestamp="1595534403405">
+    <state x="520" y="183" key="FileChooserDialogImpl" timestamp="1597335222994">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="495" y="107" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1595534403405" />
-    <state width="1218" height="204" key="GridCell.Tab.0.bottom" timestamp="1595534414328">
+    <state x="520" y="183" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1597335222994" />
+    <state width="1173" height="301" key="GridCell.Tab.0.bottom" timestamp="1597349310246">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1218" height="204" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1595534414328" />
-    <state width="1218" height="204" key="GridCell.Tab.0.center" timestamp="1595534414327">
+    <state width="1173" height="301" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597349310246" />
+    <state width="1173" height="301" key="GridCell.Tab.0.center" timestamp="1597349310246">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1218" height="204" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1595534414327" />
-    <state width="1218" height="204" key="GridCell.Tab.0.left" timestamp="1595534414327">
+    <state width="1173" height="301" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1597349310246" />
+    <state width="1173" height="301" key="GridCell.Tab.0.left" timestamp="1597349310246">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1218" height="204" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1595534414327" />
-    <state width="1218" height="204" key="GridCell.Tab.0.right" timestamp="1595534414327">
+    <state width="1173" height="301" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1597349310246" />
+    <state width="1173" height="301" key="GridCell.Tab.0.right" timestamp="1597349310246">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1218" height="204" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1595534414327" />
-    <state width="1218" height="204" key="GridCell.Tab.1.bottom" timestamp="1595534414328">
+    <state width="1173" height="301" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1597349310246" />
+    <state width="1173" height="301" key="GridCell.Tab.1.bottom" timestamp="1597349310246">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1218" height="204" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1595534414328" />
-    <state width="1218" height="204" key="GridCell.Tab.1.center" timestamp="1595534414328">
+    <state width="1173" height="301" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597349310246" />
+    <state width="1173" height="301" key="GridCell.Tab.1.center" timestamp="1597349310246">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1218" height="204" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1595534414328" />
-    <state width="1218" height="204" key="GridCell.Tab.1.left" timestamp="1595534414328">
+    <state width="1173" height="301" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1597349310246" />
+    <state width="1173" height="301" key="GridCell.Tab.1.left" timestamp="1597349310246">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1218" height="204" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1595534414328" />
-    <state width="1218" height="204" key="GridCell.Tab.1.right" timestamp="1595534414328">
+    <state width="1173" height="301" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1597349310246" />
+    <state width="1173" height="301" key="GridCell.Tab.1.right" timestamp="1597349310246">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1218" height="204" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1595534414328" />
-    <state width="1218" height="204" key="GridCell.Tab.2.bottom" timestamp="1595534414328">
+    <state width="1173" height="301" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1597349310246" />
+    <state width="1173" height="301" key="GridCell.Tab.2.bottom" timestamp="1597349310247">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1218" height="204" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1595534414328" />
-    <state width="1218" height="204" key="GridCell.Tab.2.center" timestamp="1595534414328">
+    <state width="1173" height="301" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597349310247" />
+    <state width="1173" height="301" key="GridCell.Tab.2.center" timestamp="1597349310246">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1218" height="204" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1595534414328" />
-    <state width="1218" height="204" key="GridCell.Tab.2.left" timestamp="1595534414328">
+    <state width="1173" height="301" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1597349310246" />
+    <state width="1173" height="301" key="GridCell.Tab.2.left" timestamp="1597349310246">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1218" height="204" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1595534414328" />
-    <state width="1218" height="204" key="GridCell.Tab.2.right" timestamp="1595534414328">
+    <state width="1173" height="301" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1597349310246" />
+    <state width="1173" height="301" key="GridCell.Tab.2.right" timestamp="1597349310247">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1218" height="204" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1595534414328" />
-    <state x="246" y="83" key="IDE.errors.dialog" timestamp="1595532589588">
+    <state width="1173" height="301" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1597349310247" />
+    <state x="246" y="83" key="IDE.errors.dialog" timestamp="1596817971188">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="246" y="83" key="IDE.errors.dialog/0.0.1536.824@0.0.1536.824" timestamp="1595532589588" />
-    <state x="121" y="0" key="SettingsEditor" timestamp="1595534523263">
+    <state x="246" y="83" key="IDE.errors.dialog/0.0.1536.824@0.0.1536.824" timestamp="1596817971188" />
+    <state x="121" y="0" key="SettingsEditor" timestamp="1597348209833">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="121" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1595534523263" />
+    <state x="121" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1597348209833" />
     <state x="336" y="48" key="com.intellij.javaee.view.ServerArtifactsDialog" timestamp="1595533716557">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
