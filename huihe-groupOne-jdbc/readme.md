@@ -128,7 +128,7 @@ create table if not exists `group1`(
 	`sname` varchar(30) comment'姓名',
 	`sage` int(3) default 18 comment'年龄 默认为18'
 );
-insert into group1 values('20181101152', '候鑫杰', 18), ('20181101051', '韩旭', 18);
+insert into group1 values('20181101152', 'zs', 18), ('20181101051', 'ls', 18);
 ```
 
 #### 2.下面我们随意新建一个java工程体验一下  
@@ -401,42 +401,34 @@ public class JDBCUtils {
 
     /**
      * 更新操作 增、删、改
-     * @param connection
      * @param pstm
-     * @param sql
      * @param params
      * @return
      * @throws Exception
      */
-    public static int executeUpdate(Connection connection,PreparedStatement pstm,
-                              String sql,Object[] params) throws Exception{
+    public static int executeUpdate(PreparedStatement pstm, Object[] params) throws Exception{
         int updateRows = 0;
-        pstm = connection.prepareStatement(sql);
-        for(int i = 0; i < params.length; i++){
-            pstm.setObject(i+1, params[i]);
-        }
+        if(params != null)
+            for(int i = 0; i < params.length; i++){
+                pstm.setObject(i+1, params[i]);
+            }
         updateRows = pstm.executeUpdate();
         return updateRows;
     }
 
     /**
      * 查询操作 查
-     * @param connection
      * @param pstm
-     * @param sql
      * @param params
      * @return 结果集
      */
-    public static ResultSet executeQuery(Connection connection,PreparedStatement pstm,
-                                    String sql,Object[] params) throws Exception{
-        pstm = connection.prepareStatement(sql);
-        if(params != null){
+    public static ResultSet executeQuery(PreparedStatement pstm, Object[] params) throws Exception{
+        if (params != null){
             for(int i = 0; i < params.length; i++){
                 pstm.setObject(i+1, params[i]);
             }
         }
-        ResultSet rs = pstm.executeQuery();
-        return rs;
+        return pstm.executeQuery();
     }
 }
 ```
@@ -456,31 +448,35 @@ import java.sql.ResultSet;
 
 public class Test {
     public static void main(String[] args) throws Exception{
-        Connection conn = JDBCUtils.getConnection();
+       Connection conn = JDBCUtils.getConnection();
         PreparedStatement psmt = null;
 
         //增
         String sql = "insert into group1 values(?,?,?)";
         Object[] objs = new Object[]{"20181101153", "李四", 15};
-        int count = JDBCUtils.executeUpdate(conn, psmt, sql, objs);
+        psmt = conn.prepareStatement(sql);
+        int count = JDBCUtils.executeUpdate(psmt, objs);
         if(count > 0) System.out.println("添加成功");
 
         //删
         sql = "delete from group1 where sid=?";
         objs = new Object[]{"20181101153"};
-        count = JDBCUtils.executeUpdate(conn, psmt, sql, objs);
+        psmt = conn.prepareStatement(sql);
+        count = JDBCUtils.executeUpdate(psmt, objs);
         if(count > 0) System.out.println("删除成功");
 
         //改
         sql = "update group1 set sname=? where sid=?";
-        objs = new Object[]{"候鑫杰", "20181101152"};
-        count = JDBCUtils.executeUpdate(conn, psmt, sql, objs);
+        objs = new Object[]{"ww", "20181101152"};
+        psmt = conn.prepareStatement(sql);
+        count = JDBCUtils.executeUpdate(psmt, objs);
         if(count > 0) System.out.println("修改成功");
 
         //查
         sql = "select * from group1 where sage=?";
         objs = new Object[]{18};
-        ResultSet rs = JDBCUtils.executeQuery(conn, psmt, sql, objs);
+        psmt = conn.prepareStatement(sql);
+        ResultSet rs = JDBCUtils.executeQuery(psmt, objs);
         while(rs.next()){
             System.out.println(rs.getObject(1)+"-"+
                     rs.getObject(2)+"-"+
@@ -607,7 +603,7 @@ dao - 持久化层，是对于我们数据库的操作，对应基本的增删�
 
  model - 模型层，定义了操作的实体类型
 
-service - 业务曾 处理主要的复杂的逻辑 一个BookService接口，定义标准的业务方法，对应一个或多个Impl实现类（这里没有任何复杂的逻辑，所以service层我忽略了，直接以controller层操作dao层）
+service - 业务曾 处理主要的复杂的逻辑 一个BookService接口，定义标准的业务方法，对应一个或多个Impl实现类
 
 util - 一些工具类 如我们现在的JDBCUtils
 
@@ -684,7 +680,8 @@ public class BookDaoImpl implements BookDao {
         String sql = "select * from book";
         try {
             conn = JDBCUtils.getConnection();
-            rs = JDBCUtils.executeQuery(conn, pstm, sql, null);
+            pstm = conn.prepareStatement(sql);
+            rs = JDBCUtils.executeQuery(pstm, null);
             while(rs.next()){
                 Book book = new Book(rs.getInt(1),rs.getString(2),rs.getString(3)
                 ,rs.getString(4),rs.getString(5));//构建对象
@@ -705,7 +702,8 @@ public class BookDaoImpl implements BookDao {
         Object[] objects = new Object[]{id};
         try {
             conn = JDBCUtils.getConnection();
-            rs = JDBCUtils.executeQuery(conn, pstm, sql, objects);
+            pstm = conn.prepareStatement(sql);
+            rs = JDBCUtils.executeQuery(pstm, objects);
             while(rs.next()){
                 book = new Book(rs.getInt(1),rs.getString(2),rs.getString(3)
                         ,rs.getString(4),rs.getString(5));//构建对象
@@ -726,7 +724,8 @@ public class BookDaoImpl implements BookDao {
         Object[] objects = new Object[]{id};
         try {
             conn = JDBCUtils.getConnection();
-            count = JDBCUtils.executeUpdate(conn, pstm, sql, objects);
+            pstm = conn.prepareStatement(sql);
+            count = JDBCUtils.executeUpdate(pstm, objects);
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
@@ -742,7 +741,8 @@ public class BookDaoImpl implements BookDao {
         Object[] objects = new Object[]{book.getBname(), book.getAuthor(), book.getCategory(), book.getDescription()};
         try {
             conn = JDBCUtils.getConnection();
-            count = JDBCUtils.executeUpdate(conn, pstm, sql, objects);
+            pstm = conn.prepareStatement(sql);
+            count = JDBCUtils.executeUpdate(pstm, objects);
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
@@ -758,7 +758,8 @@ public class BookDaoImpl implements BookDao {
         Object[] objects = new Object[]{book.getBname(), book.getAuthor(), book.getCategory(), book.getDescription(), book.getBid()};
         try {
             conn = JDBCUtils.getConnection();
-            count = JDBCUtils.executeUpdate(conn, pstm, sql, objects);
+            pstm = conn.prepareStatement(sql);
+            count = JDBCUtils.executeUpdate(pstm, objects);
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
@@ -767,9 +768,63 @@ public class BookDaoImpl implements BookDao {
         return count;
     }
 }
+
 ```
 
-#### 4.控制层
+#### 4.Service层
+
+##### 1.接口Service
+
+```java
+public interface BookService {
+    List<Book> selectAll(); //查询全部
+
+    Book selectById(int id); //用编号查询
+
+    int deleteById(int id); //通过id删除
+
+    int addBook(Book book); //添加图书
+
+    int updateById(Book book); //通过id更新
+}
+```
+
+##### 2.实现ServiceImpl
+
+```java
+public class BookServiceImpl implements BookService {
+
+    BookDao bookDao = new BookDaoImpl();
+
+    @Override
+    public List<Book> selectAll() {
+        return bookDao.selectAll();
+    }
+
+    @Override
+    public Book selectById(int id) {
+        return bookDao.selectById(id);
+    }
+
+    @Override
+    public int deleteById(int id) {
+        return bookDao.deleteById(id);
+    }
+
+    @Override
+    public int addBook(Book book) {
+        return bookDao.addBook(book);
+    }
+
+    public int updateById(Book book) {
+        return bookDao.updateById(book);
+    }
+
+
+}
+```
+
+#### 5.控制层
 
 控制层就是处理web前端请求，返回处理结果
 
@@ -806,27 +861,10 @@ public class BookDaoImpl implements BookDao {
 //前台界面接受到json数据后可以JSON.parse将它解析为js对象，然后使用其中的数据
 
 ```java
-package com.group1.book.controler.book;
-
-
-import com.alibaba.fastjson.JSON;
-import com.group1.book.dao.BookDao;
-import com.group1.book.dao.BookDaoImpl;
-import com.group1.book.model.Book;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
-
 @WebServlet("/manager")
 public class BookServlet extends HttpServlet {
 
-    BookDao bookDao = new BookDaoImpl();
+    BookService bookService = new BookServiceImpl();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -854,7 +892,7 @@ public class BookServlet extends HttpServlet {
         Book book = new Book(Integer.parseInt(req.getParameter("bid")),req.getParameter("bname"),
                 req.getParameter("author"), req.getParameter("category"),
                 req.getParameter("desc"));
-        bookDao.updateById(book);
+        bookService.updateById(book);
         try {
             req.getRequestDispatcher("index.html").forward(req, resp); //转发到
         } catch (IOException | ServletException e) {
@@ -866,9 +904,9 @@ public class BookServlet extends HttpServlet {
         PrintWriter writer = null;
         try {
             int bid = Integer.parseInt(req.getParameter("bid"));
-            Book book = bookDao.selectById(bid);
+            Book book = bookService.selectById(bid);
             writer = resp.getWriter();
-            writer.print(JSON.toJSON(book));//返回给前台对应的json数据
+            writer.print(JSON.toJSON(book));
         }catch (NumberFormatException | IOException e){
             e.printStackTrace();
         }finally {
@@ -879,7 +917,7 @@ public class BookServlet extends HttpServlet {
     private void deleteBook(HttpServletRequest req, HttpServletResponse resp) {
         try {
             int bid = Integer.parseInt(req.getParameter("bid"));
-            bookDao.deleteById(bid);
+            bookService.deleteById(bid);
             resp.sendRedirect("index.html");
         }catch (NumberFormatException | IOException e){
             e.printStackTrace();
@@ -891,7 +929,7 @@ public class BookServlet extends HttpServlet {
                 req.getParameter("author"), req.getParameter("category"),
                 req.getParameter("desc"));
 
-        bookDao.addBook(book);
+        bookService.addBook(book);
         try {
             resp.sendRedirect("index.html"); //重定向到首页
         } catch (IOException e) {
@@ -900,25 +938,24 @@ public class BookServlet extends HttpServlet {
     }
 
     public void getAll(HttpServletRequest req, HttpServletResponse resp){
-        List<Book> books = bookDao.selectAll();
+        List<Book> books = bookService.selectAll();
         System.out.println(books);
         String books_json = JSON.toJSONString(books);
         PrintWriter writer = null;
         System.out.println(books_json);
         try {
             writer = resp.getWriter();
-            writer.print(books_json);//返回给前台对应的json数据
+            writer.print(books_json);
         } catch (IOException e) {
             e.printStackTrace();
         }finally {
             if(writer != null) writer.close();
         }
     }
-
 }
 ```
 
-#### 5.filter - 过滤器
+#### 6.filter - 过滤器
 
 过滤器 - 顾名思义就是对某些资源进行过滤的操作
 
@@ -969,7 +1006,7 @@ public class EncodingFilter implements Filter {
 }
 ```
 
-#### 6.web.xml
+#### 7.web.xml
 
 web.xml的作用其实是和我们前面的两个注解@WebServlet("/manager")  @WebFilter("/*")的作用是一样的，标明我们的请求路径该有那些类处理，具体的配置如果有兴趣用web.xml也请自行百度。(注解还是舒服啊。)
 
